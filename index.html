@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Radius — Ремонт и порошковая покраска дисков в Совхозе им. Ленина | Шиномонтаж</title>
+  <meta name="description" content="Заводское восстановление, порошковая покраска и правка дисков на станках с ЧПУ в Совхозе им. Ленина. Шиномонтаж, проточка тормозных дисков. Рейтинг 5.0 на Яндекс Картах.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+      --red: #dc2626;
+      --red-dark: #b91c1c;
+      --red-light: #fef2f2;
+      --red-border: #fecaca;
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --green-glow: rgba(22, 163, 74, 0.18);
+      --amber: #f59e0b;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.5;
+      padding-bottom: 84px;
+      overflow-x: hidden;
+    }
+
+    @media (min-width: 900px) {
+      body { padding-bottom: 0; }
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 768px) {
+      .container { padding: 0 24px; }
+    }
+
+    /* TOP HEADER */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 800;
+      font-size: 20px;
+      border-radius: 10px;
+      letter-spacing: -0.5px;
+    }
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* DESKTOP NAV */
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-phone {
+      display: none;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .btn-header-wa {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px var(--green-glow);
+      transition: all 0.15s ease;
+    }
+    .btn-header-wa:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    .header-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .dot-pulse {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    @media (min-width: 900px) {
+      .nav-links { display: flex; }
+      .header-phone { display: block; }
+      .btn-header-wa { display: inline-flex; }
+      .header-status-pill { display: none; }
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 24px 0 32px;
+      position: relative;
+    }
+    @media (min-width: 900px) {
+      .hero { padding: 48px 0 44px; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .badge-yandex {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid #fed7aa;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #c2410c;
+    }
+    .badge-yandex svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--amber);
+    }
+    .badge-award {
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      color: var(--red);
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.6px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    @media (min-width: 900px) {
+      .hero h1 { font-size: 38px; line-height: 1.14; }
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 900px) {
+      .hero p { font-size: 15px; margin-bottom: 26px; }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .btn-main-red {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--red);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 22px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+      transition: all 0.15s ease;
+    }
+    .btn-main-red:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 20px;
+      border-radius: 10px;
+      transition: all 0.15s ease;
+    }
+    .btn-ghost:hover { border-color: var(--text); background: #f8fafc; }
+
+    /* HERO SHOWCASE CARD (REAL RADIUS FACADE) */
+    .hero-cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    .hero-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .hero-cover:hover img { transform: scale(1.02); }
+    .hero-cover-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-cover-badge span { color: var(--red); }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (min-width: 600px) {
+      .stats-row { grid-template-columns: repeat(4, 1fr); }
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .stat-title {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* SECTION BASICS */
+    .section {
+      padding: 32px 0;
+    }
+    @media (min-width: 900px) {
+      .section { padding: 48px 0; }
+    }
+    .sec-head {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sec-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .sec-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text);
+    }
+    @media (min-width: 900px) {
+      .sec-title { font-size: 28px; }
+    }
+    .sec-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* WHY US CARDS */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 600px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .feature-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .feature-icon-box {
+      width: 44px;
+      height: 44px;
+      background: var(--red-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    .feature-icon-box svg { width: 22px; height: 22px; fill: currentColor; }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .feature-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* SERVICES GRID (CARDS WITH REAL PHOTOS) */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .service-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+    }
+    .service-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/10;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+    .service-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover .service-img-wrap img {
+      transform: scale(1.04);
+    }
+    .service-price-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .service-content {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .service-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .service-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 9px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .service-card:hover .service-btn {
+      background: var(--red-light);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    /* INTERACTIVE CALCULATOR (2-CLICK) */
+    .calc-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+    }
+    @media (min-width: 900px) {
+      .calc-wrapper { padding: 32px; }
+    }
+
+    .calc-step-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .chips-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .calc-chip {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 9px 15px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .calc-chip:hover { border-color: var(--border-strong); }
+    .calc-chip.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+    }
+
+    .calc-result-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 600px) {
+      .calc-result-box {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .calc-summary-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .calc-summary-note {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .calc-price-val {
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--red);
+    }
+    .calc-wa-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 22px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px var(--green-glow);
+      transition: all 0.15s ease;
+    }
+    .calc-wa-action:hover { background: var(--green-dark); }
+
+    /* BEFORE / AFTER SHOWCASE */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .compare-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .compare-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    .compare-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #f1f5f9;
+    }
+    .compare-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .compare-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tag-before { background: #fee2e2; color: #991b1b; }
+    .tag-after { background: #dcfce7; color: #166534; }
+    .compare-meta {
+      padding: 16px;
+    }
+    .compare-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .compare-sub {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 768px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+    .review-user-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .review-author {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .review-author span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .review-stars {
+      color: var(--amber);
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    .review-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* CONTACTS & LOCATION */
+    .contacts-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    @media (min-width: 900px) {
+      .contacts-wrapper {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+        padding: 32px;
+      }
+    }
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--red-light);
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .contact-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 1px;
+    }
+
+    .contacts-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .btn-map-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border-strong);
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .btn-map-action:hover { background: #f1f5f9; border-color: var(--text); }
+
+    .direct-call-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .direct-call-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .direct-call-p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    .btn-direct-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px var(--green-glow);
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 24px 0 16px;
+      font-size: 12px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    /* STICKY BOTTOM BAR (MOBILE ONLY) */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .sticky-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 10px;
+    }
+    .btn-sticky-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #f1f5f9;
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px;
+      border-radius: 10px;
+    }
+    .btn-sticky-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px var(--green-glow);
+    }
+
+    @media (min-width: 900px) {
+      .sticky-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <div class="brand-logo-badge">R</div>
+        <div class="brand-info">
+          <div class="brand-name">
+            Radius
+            <span style="font-size: 11px; font-weight: 700; color: var(--red); background: var(--red-light); padding: 1px 6px; border-radius: 4px;">5.0 ★</span>
+          </div>
+          <div class="brand-sub">Совхоз им. Ленина • Каширское ш., 23-й км</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#services">Услуги и цены</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#compare">До / После</a>
+        <a href="#reviews">Отзывы (1000+)</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-status-pill">
+          <span class="dot-pulse"></span>
+          <span>10:00 – 20:00</span>
+        </div>
+        <a href="tel:+79952227413" class="header-phone">+7 (995) 222-74-13</a>
+        <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82%D1%83%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2" class="btn-header-wa">
+          Написать в WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tags">
+            <div class="badge-yandex">
+              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <span>5.0 (1 024 отзыва на Картах)</span>
+            </div>
+            <div class="badge-award">Хорошее место 2026</div>
+          </div>
+
+          <h1>Порошковая покраска и ремонт дисков в Совхозе им. Ленина</h1>
+          <p>Заводское восстановление литых и кованых дисков на станках с ЧПУ: алмазная проточка, правка восьмёрок, аргоновая сварка и комплексный шиномонтаж за 1 визит.</p>
+
+          <div class="hero-actions">
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2" class="btn-main-red">
+              Рассчитать стоимость в WhatsApp
+            </a>
+            <a href="#compare" class="btn-ghost">
+              Примеры До / После
+            </a>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-num">5.0 ★</div>
+              <div class="stat-title">1 024 оценки</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">от 1 600 ₽</div>
+              <div class="stat-title">Шиномонтаж</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">3 года</div>
+              <div class="stat-title">Гарантия на ЛКП</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">10–20</div>
+              <div class="stat-title">Без выходных</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO SHOWCASE IMAGE (REAL BUILDING WITH MAZDA 6 & BMW X6) -->
+        <div class="hero-cover">
+          <img src="assets/radius_facade.jpg" alt="Сервис Radius на Каширском шоссе 23 км">
+          <div class="hero-cover-badge">
+            <span>●</span> Каширское ш., 23-й км, 1, стр. 2
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section">
+      <div class="sec-head">
+        <span class="sec-label">Преимущества</span>
+        <h2 class="sec-title">Почему автовладельцы выбирают Radius</h2>
+        <p class="sec-desc">Высокоточное оборудование и строгий заводской регламент восстановления.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+          </div>
+          <div class="feature-title">Алмазная проточка ЧПУ</div>
+          <div class="feature-text">Лазерное сканирование геометрии и восстановление заводской зеркальной риски спиц.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          </div>
+          <div class="feature-title">Гарантия 3 года на ЛКП</div>
+          <div class="feature-text">Качественная порошковая полимеризация в печи — краска не вздуется и не облезет от дорожных реагентов.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+          </div>
+          <div class="feature-title">Холодная правка дисков</div>
+          <div class="feature-text">Устраняем осевое и радиальное биение без нагрева сплава, сохраняя заводскую прочность металла.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
+          </div>
+          <div class="feature-title">Всё в 1 месте</div>
+          <div class="feature-text">Шиномонтаж, балансировка, проточка тормозных дисков и аргоновая сварка прямо на месте.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="sec-head">
+        <span class="sec-label">Каталог услуг</span>
+        <h2 class="sec-title">Услуги и фиксированные цены</h2>
+        <p class="sec-desc">Честная стоимость без скрытых наценок. Нажмите на услугу для записи.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- CARD 1: POWDER COATING -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_silver.jpg" alt="Порошковая покраска дисков">
+            <div class="service-price-tag">от 10 000 ₽ / 4 шт.</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Порошковая покраска дисков</div>
+              <div class="service-desc">Пескоструйная очистка, устранение дефектов, грунтовка, порошковая краска и защитный лак с гарантией 3 года.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%BE%D1%80%D0%BE%D1%88%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%82%D0%B0%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: DIAMOND CUT -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_diamond.jpg" alt="Алмазная проточка дисков ЧПУ">
+            <div class="service-price-tag">от 10 000 ₽</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Алмазная шлифовка и проточка ЧПУ</div>
+              <div class="service-desc">Восстановление оригинального двухцветного заводского рисунка лицевой части диска на прецизионном станке.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%B0%D0%BB%D0%BC%D0%B0%D0%B7%D0%BD%D1%83%D1%8E%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%87%D0%BA%D1%83%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: RIM STRAIGHTENING -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_black.jpg" alt="Правка литых дисков">
+            <div class="service-price-tag">от 2 000 ₽ / шт.</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Правка и устранение геометрии</div>
+              <div class="service-desc">Устранение вмятин, радиального и осевого биения («восьмёрок») на профессиональном гидростенде.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A2%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%D1%81%D1%8F%20%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%B4%D0%B8%D1%81%D0%BA%D0%B0" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: TIRE FITTING -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_facade.jpg" alt="Шиномонтаж в Совхозе им Ленина">
+            <div class="service-price-tag">от 1 600 ₽ (4 колеса)</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Комплексный шиномонтаж</div>
+              <div class="service-desc">Сезонная переобувка 4-х колёс от R13 до R22. Снятие, установка, монтаж, мойка и высокоточная балансировка.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%88%D0%B8%D0%BD%D0%BE%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%D0%B6" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 5: BRAKE DISC RESURFACING -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_diamond.jpg" alt="Проточка тормозных дисков">
+            <div class="service-price-tag">2 500 ₽ / шт.</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Проточка тормозных дисков</div>
+              <div class="service-desc">Проточка без снятия прямо на ступице автомобильным станком ProCut 9.0 или со снятием (1 500 ₽). Устраняет биение в руль.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9D%D1%83%D0%B6%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%87%D0%BA%D0%B0%20%D1%82%D0%BE%D1%80%D0%BC%D0%BE%D0%B7%D0%BD%D1%8B%D1%85%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 6: ARGON WELDING & AC -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/radius_silver.jpg" alt="Аргоновая сварка дисков">
+            <div class="service-price-tag">от 1 500 ₽</div>
+          </div>
+          <div class="service-content">
+            <div>
+              <div class="service-name">Аргоновая сварка и заправка кондиционера</div>
+              <div class="service-desc">Наплавка утраченных фрагментов и заварка трещин дисков аргоном. Профессиональная заправка кондиционера — 4 000 ₽.</div>
+            </div>
+            <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%B2%D0%B0%D1%80%D0%BA%D0%B0%20%D0%B0%D1%80%D0%B3%D0%BE%D0%BD%D0%BE%D0%BC%20/%20%D0%BA%D0%BE%D0%BD%D0%B4%D0%B8%D1%86%D0%B8%D0%BE%D0%BD%D0%B5%D1%80" class="service-btn">
+              <span>Записаться в WhatsApp</span>
+              <span>➔</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="section" id="calculator">
+      <div class="sec-head">
+        <span class="sec-label">Онлайн расчёт</span>
+        <h2 class="sec-title">Экспресс-калькулятор стоимости</h2>
+        <p class="sec-desc">Выберите радиус колеса и требуемую работу — получите фиксированную цену.</p>
+      </div>
+
+      <div class="calc-wrapper">
+        <div class="calc-step-title">1. Выберите радиус диска:</div>
+        <div class="chips-group" id="radChips">
+          <div class="calc-chip" data-r="R13-R14">R13 – R14</div>
+          <div class="calc-chip" data-r="R15">R15</div>
+          <div class="calc-chip active" data-r="R16">R16</div>
+          <div class="calc-chip" data-r="R17">R17</div>
+          <div class="calc-chip" data-r="R18">R18</div>
+          <div class="calc-chip" data-r="R19">R19</div>
+          <div class="calc-chip" data-r="R20">R20</div>
+          <div class="calc-chip" data-r="R21-R22">R21 – R22</div>
+        </div>
+
+        <div class="calc-step-title">2. Выберите тип услуги:</div>
+        <div class="chips-group" id="srvChips">
+          <div class="calc-chip active" data-srv="Покраска 4 дисков">Порошковая покраска (4 шт.)</div>
+          <div class="calc-chip" data-srv="Шиномонтаж 4 колес">Комплекс шиномонтажа (4 шт.)</div>
+          <div class="calc-chip" data-srv="Правка 1 диска">Правка литого диска (1 шт.)</div>
+          <div class="calc-chip" data-srv="Алмазная проточка">Алмазная проточка ЧПУ</div>
+          <div class="calc-chip" data-srv="Проточка тормозных дисков">Проточка тормозных дисков</div>
+        </div>
+
+        <div class="calc-result-box">
+          <div>
+            <div class="calc-summary-title" id="calcSummaryTitle">R16 • Порошковая покраска (4 шт.)</div>
+            <div class="calc-summary-note">Включает пескоструй, грунт, цвет и защитный лак с гарантией 3 года</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="calc-price-val" id="calcPriceVal">10 000 ₽</div>
+            <a id="calcWaLink" href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F:%20R16%20%E2%80%A2%20%D0%9F%D0%BE%D1%80%D0%BE%D1%88%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0%20(4%20%D1%88%D1%82.)%20(10%20000%20%E2%82%BD)" class="calc-wa-action">
+              <span>Записаться</span>
+              ➔
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER SHOWCASE -->
+    <section class="section" id="compare">
+      <div class="sec-head">
+        <span class="sec-label">Наглядный результат</span>
+        <h2 class="sec-title">Примеры работ: До и После</h2>
+        <p class="sec-desc">Реальное состояние дисков при приёмке и после восстановительных работ в Radius.</p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-img-wrap">
+            <img src="assets/radius_do1.jpg" alt="Диск ДО ремонта — вмятины и сколы">
+            <div class="compare-tag tag-before">ДО ремонта</div>
+          </div>
+          <div class="compare-meta">
+            <div class="compare-title">Повреждённый литой диск</div>
+            <div class="compare-sub">Глубокая бордюрная притёртость, нарушение геометрии, сколы ЛКП.</div>
+          </div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-img-wrap">
+            <img src="assets/radius_posle.jpg" alt="Диск ПОСЛЕ ремонта — идеальное ЛКП">
+            <div class="compare-tag tag-after">ПОСЛЕ ремонта</div>
+          </div>
+          <div class="compare-meta">
+            <div class="compare-title">Заводской вид и балансировка</div>
+            <div class="compare-sub">Геометрия выведена в 0, аргоновая наплавка борта, порошковая покраска под лак.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section" id="reviews">
+      <div class="sec-head">
+        <span class="sec-label">Репутация</span>
+        <h2 class="sec-title">Отзывы клиентов на Яндекс Картах</h2>
+        <p class="sec-desc">Более 1 000 реальных автовладельцев оценили сервис на максимальные 5.0 баллов.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-user-row">
+            <div class="review-author">
+              Алексей Фомин
+              <span>Знаток города 3 уровня</span>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-text">
+            «Покрасили красиво! Упаковали в целофанку, чтоб не покорябалось! Помогли погрузить (сотрудник перенёс из мастерской мне в багажник). Диски хорошо зачистили, выровняли. Работой доволен! И цена адекватная.»
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-user-row">
+            <div class="review-author">
+              Виктор Черединкин
+              <span>Знаток города 11 уровня</span>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-text">
+            «Посетил данный сервис, проточили передние тормозные диски. Все супер! Мастер отличный! Со снятием колеса и суппортов, подъемом машины все заняло 50 минут! Нет слов, тормоза стали как новые, никакого биения руля! От души, ребята профессионалы! Рекомендую на 100%»
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTS & LOCATION -->
+    <section class="section" id="contacts">
+      <div class="sec-head">
+        <span class="sec-label">Локация</span>
+        <h2 class="sec-title">Контакты и проезд</h2>
+      </div>
+
+      <div class="contacts-wrapper">
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Адрес мастерской</div>
+              <div class="contact-val">Московская обл., пос. Совхоза им. Ленина, Каширское шоссе, 23-й км, 1, стр. 2</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">График работы</div>
+              <div class="contact-val">Ежедневно: с 10:00 до 20:00 (без выходных)</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Телефоны для записи</div>
+              <div class="contact-val">+7 (995) 222-74-13 &bull; +7 (499) 404-00-94</div>
+            </div>
+          </div>
+
+          <div class="contacts-btns">
+            <a href="https://yandex.ru/maps/org/radius/1151347551/" target="_blank" class="btn-map-action">
+              <span>Яндекс Карты</span>
+              ➔
+            </a>
+            <a href="https://yandex.ru/navi/?whatshere%5Bpoint%5D=37.740162%2C55.584421&whatshere%5Bzoom%5D=17" target="_blank" class="btn-map-action">
+              <span>Навигатор</span>
+              ➔
+            </a>
+          </div>
+        </div>
+
+        <div class="direct-call-card">
+          <div>
+            <div class="direct-call-title">Оцените стоимость по фото</div>
+            <p class="direct-call-p">Пришлите фото повреждения или параметры дисков в WhatsApp — мастер назовёт точную стоимость и время работы за 5 минут.</p>
+          </div>
+          <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%B8%D1%81%D0%BB%D0%B0%D1%82%D1%8C%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B8%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8" class="btn-direct-wa">
+            Отправить фото в WhatsApp (+7 995 222-74-13)
+          </a>
+        </div>
+      </div>
+
+      <div class="footer">
+        Radius LTD &bull; Восстановление и покраска дисков в пос. Совхоза им. Ленина &bull; 10:00–20:00 ежедневно
+      </div>
+    </section>
+
+  </main>
+
+  <!-- STICKY ACTION BAR (MOBILE ONLY) -->
+  <div class="sticky-bar">
+    <div class="sticky-inner">
+      <a href="tel:+79952227413" class="btn-sticky-call">
+        <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span>Позвонить</span>
+      </a>
+      <a href="https://wa.me/79952227413?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20Radius" class="btn-sticky-wa">
+        <span>В WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // EXACT PRICE MATRIX FROM YANDEX MAPS
+    const prices = {
+      'Покраска 4 дисков': {
+        'R13-R14': 'от 8 000 ₽',
+        'R15': 'от 9 000 ₽',
+        'R16': '10 000 ₽',
+        'R17': '11 000 ₽',
+        'R18': '12 000 ₽',
+        'R19': '13 000 ₽',
+        'R20': '15 000 ₽',
+        'R21-R22': 'от 17 000 ₽'
+      },
+      'Шиномонтаж 4 колес': {
+        'R13-R14': '1 600 ₽',
+        'R15': '1 800 ₽',
+        'R16': '2 400 ₽',
+        'R17': '2 800 ₽',
+        'R18': '3 200 ₽',
+        'R19': '3 800 ₽',
+        'R20': '4 400 ₽',
+        'R21-R22': '5 500 ₽'
+      },
+      'Правка 1 диска': {
+        'R13-R14': 'от 1 800 ₽',
+        'R15': 'от 1 800 ₽',
+        'R16': '2 000 ₽',
+        'R17': '2 300 ₽',
+        'R18': '2 600 ₽',
+        'R19': '3 000 ₽',
+        'R20': '3 500 ₽',
+        'R21-R22': '4 000 ₽'
+      },
+      'Алмазная проточка': {
+        'R13-R14': 'от 10 000 ₽',
+        'R15': 'от 10 000 ₽',
+        'R16': '10 000 ₽',
+        'R17': '11 000 ₽',
+        'R18': '12 000 ₽',
+        'R19': '13 000 ₽',
+        'R20': '15 000 ₽',
+        'R21-R22': 'от 16 000 ₽'
+      },
+      'Проточка тормозных дисков': {
+        'R13-R14': '2 500 ₽ / шт.',
+        'R15': '2 500 ₽ / шт.',
+        'R16': '2 500 ₽ / шт.',
+        'R17': '2 500 ₽ / шт.',
+        'R18': '2 500 ₽ / шт.',
+        'R19': '2 500 ₽ / шт.',
+        'R20': '2 500 ₽ / шт.',
+        'R21-R22': '2 500 ₽ / шт.'
+      }
+    };
+
+    let curRad = 'R16';
+    let curSrv = 'Покраска 4 дисков';
+
+    function updCalculator() {
+      const priceVal = (prices[curSrv] && prices[curSrv][curRad]) ? prices[curSrv][curRad] : 'по запросу';
+      document.getElementById('calcSummaryTitle').textContent = curRad + ' • ' + curSrv;
+      document.getElementById('calcPriceVal').textContent = priceVal;
+      const msg = 'Здравствуйте! Хочу записаться: ' + curRad + ' • ' + curSrv + ' (' + priceVal + ')';
+      document.getElementById('calcWaLink').href = 'https://wa.me/79952227413?text=' + encodeURIComponent(msg);
+    }
+
+    document.querySelectorAll('#radChips .calc-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#radChips .calc-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        curRad = chip.getAttribute('data-r');
+        updCalculator();
+      });
+    });
+
+    document.querySelectorAll('#srvChips .calc-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#srvChips .calc-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        curSrv = chip.getAttribute('data-srv');
+        updCalculator();
+      });
+    });
+
+    updCalculator();
+  </script>
+</body>
+</html>
